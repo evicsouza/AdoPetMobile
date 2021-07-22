@@ -7,28 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  login = {
-    email: '',
-    password: ''
-  };
+  constructor() { }
 
-  constructor(
-   // private accountService: AccountService,
-   // private router: Router
-  ) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  async onSubmit() {
-    try {
-    //  const result = await this.accountService.login(this.login);
-     // console.log(`Login efetuado: ${result}`);
-
-      // navego para a rota vazia novamente
-    //  this.router.navigate(['']);
-    } catch (error) {
-      console.error(error);
-    }
-  }
 }
