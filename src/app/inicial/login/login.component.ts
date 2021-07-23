@@ -1,3 +1,4 @@
+import { LoginService } from './../../service/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { UsuarioModule } from 'src/app/model/usuario/usuario.module';
@@ -11,25 +12,28 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  cadastroForm: FormGroup;
-  usuario: UsuarioModule;
-  user: UsuarioModule = {
-    $id: '',
-    $nome: ' ',
+  login = {
     email: '',
-    senha: ''
+    password: ''
   };
 
-  constructor(private route: Router, private rotaAtiva: ActivatedRoute, private authService: AuthService) {
-   // this.user = this.rotaAtiva.snapshot.params['user'];
-  }
-  ngOnInit() {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router
+  ) { }
 
-  signInWithGoogle() {
-    this.authService.signInWithGoogle()
-      .then(() => {
-        this.route.navigate(['/feed/listar-animais']);
-      })
-      .catch((err) => console.log(err));
+  ngOnInit() {
+  }
+
+  async onSubmit() {
+    try {
+      const result = await this.loginService.login(this.login);
+      console.log(`Login efetuado: ${result}`);
+
+      // navego para a rota vazia novamente
+      this.router.navigate(['']);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
