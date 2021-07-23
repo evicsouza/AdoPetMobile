@@ -1,30 +1,13 @@
-import { LoginComponent } from './inicial/login/login.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuardService } from './service/auth-guard.service';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LoginComponent,
- //   children: [
-   //   { path: '', component: TaskListComponent },
-    //  { path: 'new', component: TaskFormComponent },
-    //  { path: 'edit/:id', component: TaskFormComponent },
- //   ],
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: '',
-    component: LoginComponent,
-    children: [
-   //   { path: '', redirectTo: 'login', pathMatch: 'full' },
-    //  { path: 'login', component: LoginComponent },
-   //   { path: 'create-account', component: CreateAccountComponent }
-    ]
-  },
-  { path: '**', redirectTo: '' }
-];;
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+ // { path: 'home', loadChildren: './pages/home/home.module#HomePageModule', canActivate: [AuthGuard] },
+ // { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule', canActivate: [LoggedGuard] },
+ // { path: 'details', loadChildren: './pages/details/details.module#DetailsPageModule', canActivate: [AuthGuard] },
+ // { path: 'details/:id', loadChildren: './pages/details/details.module#DetailsPageModule', canActivate: [AuthGuard] },
+];
 
 @NgModule({
   imports: [
@@ -32,4 +15,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
